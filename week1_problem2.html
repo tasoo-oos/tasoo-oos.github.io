@@ -56,9 +56,8 @@
                     max="3"
                     step="1"
                     value="0"
-                    onchange="updateSkillLevel()"
                 />
-                <p id="skillLevelText">실력: Beginner</p>
+                <p id="skillLevelText">실력: 초보</p>
 
                 <h3>희망 대회 일시</h3>
                 <input type="date" name="contestdate" />
@@ -70,11 +69,12 @@
     </body>
 
     <script>
-        const textarea = document.querySelector('textarea');
+        const textarea = document.querySelector('textarea'); //
         const erase_btn = document.querySelector('#erase');
         const skillLevelText = document.querySelector('#skillLevelText');
         const htmlCheckbox = document.querySelector('#htmlCheckbox');
         const warningText = document.querySelector('#warningText');
+        const rangeInput = document.querySelector('input[name="points"]');
 
         erase_btn.addEventListener('click', () => {
             textarea.value = '';
@@ -86,30 +86,29 @@
                 : '';
         });
 
-        function updateSkillLevel() {
-            const rangeInput = document.querySelector('input[name="points"]');
+        rangeInput.addEventListener('change', () => {
             const skillLevel = parseInt(rangeInput.value);
 
             let skillText;
 
             switch (skillLevel) {
                 case 0:
-                    skillText = '실력: Beginner';
+                    skillText = '실력: 초보';
                     break;
                 case 1:
-                    skillText = '실력: Intermediate';
+                    skillText = '실력: 중수';
                     break;
                 case 2:
-                    skillText = '실력: Advanced';
+                    skillText = '실력: 고수';
                     break;
                 case 3:
-                    skillText = '실력: Expert';
+                    skillText = '실력: 전문';
                     break;
                 default:
-                    skillText = '실력: Unknown';
+                    skillText = '실력: ???';
             }
 
             skillLevelText.textContent = skillText;
-        }
+        });
     </script>
 </html>
