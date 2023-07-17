@@ -4,11 +4,14 @@
         <meta name="author" content="Tasoo Park" />
         <meta charset="utf-8" />
         <title>프엔 경연대회</title>
+        <link rel="stylesheet" href="./test.css" />
+        <script src="./light_dark_toggle.js"></script>
     </head>
     <body>
         <header>
             <h1>프로그래밍 경연 대회</h1>
             <p>여러 언어를 통해 코딩 문제를 풀어보자!</p>
+            <button id="mode">dark/light</button>
         </header>
 
         <hr />
@@ -17,11 +20,8 @@
             <form>
                 <h3>개인정보</h3>
                 <ul>
-                    <li>이름 <input type="text" name="name" /></li>
-                    <li>
-                        연락처
-                        <input type="tel" name="phone" />
-                    </li>
+                    <li>이름<input type="text" name="name" /></li>
+                    <li>연락처<input type="tel" name="phone" /></li>
                 </ul>
 
                 <h3>지원분야</h3>
@@ -41,9 +41,7 @@
                     onclick="alert('뻥이지롱~');"
                 />
 
-                <button type="button" name="erase" id="erase">
-                    내용 지우기
-                </button>
+                <input type="button" value="내용 지우기" id="erase" />
 
                 <h3>포트폴리오</h3>
                 <input type="file" name="portfolio" />

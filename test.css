@@ -1,0 +1,91 @@
+:root {
+    /* Dark theme */
+    --dark-body-background: #000;
+    --dark-body-foregeound: #fff;
+
+    --dark-table-background: #333;
+    --dark-table-border: #ccc;
+
+    --dark-a-text: #0f6;
+    --dark-a-text-hovered: #06f;
+
+    --dark-input-background: #333;
+    --dark-input-text: #fff;
+
+    /* Light theme */
+    --light-body-background: #fff;
+    --light-body-foregeound: #000;
+
+    --light-table-background: #ccc;
+    --light-table-border: #333;
+
+    --light-a-text: #06f;
+    --light-a-text-hovered: #0f6;
+
+    --light-input-background: #fff;
+    --light-input-text: #000;
+}
+
+:root.theme-light {
+    /* Light theme */
+    --current-body-background: var(--light-body-background);
+    --current-body-foreground: var(--light-body-foregeound);
+    --current-table-background: var(--light-table-background);
+    --current-table-border: var(--light-table-border);
+    --current-a-text: var(--light-a-text);
+    --current-a-text-hovered: var(--light-a-text-hovered);
+    --current-input-background: var(--light-input-background);
+    --current-input-text: var(--light-input-text);
+}
+
+:root.theme-dark {
+    /* Dark theme */
+    --current-body-background: var(--dark-body-background);
+    --current-body-foreground: var(--dark-body-foregeound);
+    --current-table-background: var(--dark-table-background);
+    --current-table-border: var(--dark-table-border);
+    --current-a-text: var(--dark-a-text);
+    --current-a-text-hovered: var(--dark-a-text-hovered);
+    --current-input-background: var(--dark-input-background);
+    --current-input-text: var(--dark-input-text);
+}
+
+body {
+    background-color: var(--current-body-background);
+    color: var(--current-body-foreground);
+}
+
+table {
+    background-color: var(--current-table-background);
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid var(--current-table-border);
+    padding: 8px;
+    text-align: left;
+}
+
+a {
+    color: var(--current-a-text);
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: var(--current-a-text-hovered);
+        transition-duration: 1s;
+    }
+}
+
+button {
+    background-color: var(--current-table-background);
+    border: 1px solid var(--current-table-border);
+    color: var(--current-body-foreground);
+}
+
+input,
+textarea {
+    background-color: var(--current-input-background);
+    color: var(--current-input-text);
+}

@@ -4,24 +4,13 @@
         <meta name="author" content="Tasoo Park" />
         <meta charset="utf-8" />
         <title>html 5</title>
-        <style>
-            .a {
-                color: black;
-            }
-            .c {
-                color: #5ff;
-            }
-        </style>
-        <script>
-            const b = document.querySelector('.c');
-            b.addEventListener('click', function () {
-                b.classList.toggle('.a');
-            });
-        </script>
+        <link rel="stylesheet" href="./test.css" />
+        <script src="./light_dark_toggle.js"></script>
     </head>
     <body>
         <header>
             <h1 id="name" style="color: #0f0">Hello World - HTML 5</h1>
+            <button id="mode">dark/light</button>
         </header>
 
         <section>
