@@ -11,7 +11,7 @@
         <header>
             <h1>프로그래밍 경연 대회</h1>
             <p>여러 언어를 통해 코딩 문제를 풀어보자!</p>
-            <button id="mode">dark/light</button>
+            <button id="color-mode">dark/light</button>
         </header>
 
         <hr />
@@ -25,10 +25,10 @@
                 </ul>
 
                 <h3>지원분야</h3>
-                <input type="checkbox" name="language" />c/c++
-                <input type="checkbox" name="language" />python
-                <input type="checkbox" name="language" />javascript
-                <input type="checkbox" name="language" id="htmlCheckbox" />html
+                <input type="checkbox" name="language" /><span>c/c++</span>
+                <input type="checkbox" name="language" /><span>python</span>
+                <input type="checkbox" name="language" /><span>javascript</span>
+                <input type="checkbox" name="language" id="htmlCheckbox" /><span>html</span>
 
                 <p id="warningText"></p>
 
@@ -38,6 +38,7 @@
                 <input
                     type="button"
                     value="제출"
+                    id="submit"
                     onclick="alert('뻥이지롱~');"
                 />
 
@@ -50,6 +51,7 @@
                 <input
                     type="range"
                     name="points"
+                    id="programming-skill"
                     min="0"
                     max="3"
                     step="1"
@@ -67,7 +69,7 @@
     </body>
 
     <script>
-        const textarea = document.querySelector('textarea'); //
+        const textarea = document.querySelector('textarea');
         const erase_btn = document.querySelector('#erase');
         const skillLevelText = document.querySelector('#skillLevelText');
         const htmlCheckbox = document.querySelector('#htmlCheckbox');

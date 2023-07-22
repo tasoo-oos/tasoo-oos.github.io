@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const mode_button = document.querySelector('#mode');
+    const mode_button = document.querySelector('#color-mode');
 
     function setTheme(themeName) {
         document.documentElement.className = themeName;

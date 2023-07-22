@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>CSS 3</title>
+        <style>
+            .bg {
+                background-image: linear-gradient(90deg, #0ff 0%, #00f 100%);
+                animation-fill-mode: forwards;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                overflow: hidden;
+                align-items: center;
+                justify-content: center;
+                background-size: 300% 300%;
+                animation: AnimateBG 20s ease infinite;
+            }
+
+            @-webkit-keyframes AnimateBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 85% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            @keyframes AnimateBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 85% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .circles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .circles li {
+                position: absolute;
+                display: block;
+                list-style: none;
+                background: url('./img/bonobono_clear.png');
+                width: 80px;
+                height: 80px;
+                bottom: -150px;
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .rainbow {
+                background: linear-gradient(
+                    90deg,
+                    red,
+                    orange,
+                    yellow,
+                    green,
+                    blue,
+                    indigo,
+                    violet,
+                    red,
+                    orange,
+                    yellow,
+                    green,
+                    blue,
+                    indigo,
+                    violet
+                );
+                position: relative;
+                background-size: 200%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: animateRainbow 8s linear infinite;
+                animation-direction: normal;
+                z-index: 1;
+            }
+
+            @keyframes animateRainbow {
+                0% {
+                    background-position: 0% 50%;
+                    font-size: 80px;
+                    transform: rotate(0deg);
+                }
+                50% {
+                    background-position: 100% 50%;
+                    font-size: 200px;
+                    transform: rotate(360deg);
+                }
+                100% {
+                    background-position: 0% 50%;
+                    font-size: 80px;
+                    transform: rotate(720deg);
+                }
+            }
+        </style>
+    </head>
+    <body class="bg">
+        <div class="container">
+            <h1 class="rainbow">개쩌는 디자인</h1>
+        </div>
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <script>
+            const floating_bubbles = document.querySelectorAll('.circles li');
+            const floating_animation = [
+                {
+                    transform: 'translateY(0) rotate(0deg)',
+                    opacity: '0.7',
+                    border_radius: '0',
+                },
+
+                {
+                    transform: 'translateY(-1000px) rotate(720deg)',
+                    opacity: '100',
+                    border_radius: '50%',
+                },
+            ];
+
+            const floating_timing = {
+                duration: 0,
+                iterations: 1,
+            };
+
+            function changeAnimation(Element) {
+                Element.style.left = Math.random() * 100 + 'vw';
+                floating_timing['duration'] = (Math.random() * 15 + 5) * 1000;
+                floating_timing['opacity'] = Math.random() * 0.5 + 0.5;
+                let anim = Element.animate(floating_animation, floating_timing);
+
+                anim.onfinish = () => changeAnimation(Element);
+            }
+
+            function startAnimation() {
+                for (let i = 0; i < floating_bubbles.length; i++) {
+                    changeAnimation(floating_bubbles[i]);
+                }
+            }
+
+            startAnimation();
+        </script>
+    </body>
+</html>
