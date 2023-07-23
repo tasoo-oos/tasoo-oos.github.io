@@ -14,7 +14,7 @@
 
     --dark-erase-button-backgroud: #c00;
     --dark-erase-button-active-backgroud: #500;
-    
+
     --dark-submit-button-backgroud: #06c;
     --dark-submit-button-active-backgroud: #005;
 
@@ -22,7 +22,7 @@
 
     --dark-input-range-thumb: #5cd5eb;
     --dark-input-range-runnable-track: #053a5f;
-    
+
     --dark-color-mode-button-left: #333;
     --dark-color-mode-button-right: #ccc;
 
@@ -38,18 +38,18 @@
 
     --light-input-background: #fff;
     --light-input-text: #000;
-    
+
     --light-erase-button-backgroud: #c00;
     --light-erase-button-active-backgroud: #f30;
-    
+
     --light-submit-button-backgroud: #06c;
     --light-submit-button-active-backgroud: #08f;
-    
+
     --light-cancelled-text: #888;
-    
+
     --light-input-range-thumb: #053a5f;
     --light-input-range-runnable-track: #5cd5eb;
-    
+
     --light-color-mode-button-left: #ccc;
     --light-color-mode-button-right: #333;
 }
@@ -65,12 +65,18 @@
     --current-input-background: var(--dark-input-background);
     --current-input-text: var(--dark-input-text);
     --current-erase-button-backgroud: var(--dark-erase-button-backgroud);
-    --current-erase-button-active-backgroud: var(--dark-erase-button-active-backgroud);
+    --current-erase-button-active-backgroud: var(
+        --dark-erase-button-active-backgroud
+    );
     --current-submit-button-backgroud: var(--dark-submit-button-backgroud);
-    --current-submit-button-active-backgroud: var(--dark-submit-button-active-backgroud);
+    --current-submit-button-active-backgroud: var(
+        --dark-submit-button-active-backgroud
+    );
     --current-cancelled-text: var(--dark-cancelled-text);
     --current-input-range-thumb: var(--dark-input-range-thumb);
-    --current-input-range-runnable-track: var(--dark-input-range-runnable-track);
+    --current-input-range-runnable-track: var(
+        --dark-input-range-runnable-track
+    );
     --current-color-mode-button-left: var(--dark-color-mode-button-left);
     --current-color-mode-button-right: var(--dark-color-mode-button-right);
 }
@@ -86,12 +92,18 @@
     --current-input-background: var(--light-input-background);
     --current-input-text: var(--light-input-text);
     --current-erase-button-backgroud: var(--light-erase-button-backgroud);
-    --current-erase-button-active-backgroud: var(--light-erase-button-active-backgroud);
+    --current-erase-button-active-backgroud: var(
+        --light-erase-button-active-backgroud
+    );
     --current-submit-button-backgroud: var(--light-submit-button-backgroud);
-    --current-submit-button-active-backgroud: var(--light-submit-button-active-backgroud);
+    --current-submit-button-active-backgroud: var(
+        --light-submit-button-active-backgroud
+    );
     --current-cancelled-text: var(--light-cancelled-text);
     --current-input-range-thumb: var(--light-input-range-thumb);
-    --current-input-range-runnable-track: var(--light-input-range-runnable-track);
+    --current-input-range-runnable-track: var(
+        --light-input-range-runnable-track
+    );
     --current-color-mode-button-left: var(--light-color-mode-button-left);
     --current-color-mode-button-right: var(--light-color-mode-button-right);
 }
@@ -102,6 +114,7 @@ body {
 }
 
 table {
+    border: 2px solid var(--current-table-border);
     background-color: var(--current-table-background);
     border-collapse: collapse;
 }
@@ -134,58 +147,62 @@ textarea {
     color: var(--current-input-text);
 }
 
-input[type="range"] {
+input[type='range'] {
     -webkit-appearance: none;
     appearance: none;
     background: transparent;
     cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+input[type='range']::-webkit-slider-runnable-track {
     background: var(--current-input-range-runnable-track);
     height: 0.5rem;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     margin-top: -4px; /* Centers thumb on the track */
     background-color: var(--current-input-range-thumb);
     height: 1rem;
-    width: 0.5rem;    
+    width: 0.5rem;
 }
 
-input[type="range"]:hover {
+input[type='range']:hover {
     outline: none;
 }
 
-input[type="range"]:hover::-webkit-slider-thumb {
+input[type='range']:hover::-webkit-slider-thumb {
     border: 1px solid var(--current-input-range-runnable-track);
     outline: 3px solid var(--current-input-range-runnable-track);
     outline-offset: 0.125rem;
 }
 
-#color-mode{
-    background: linear-gradient(90deg, var(--current-color-mode-button-left) 0%, var(--current-color-mode-button-right) 100%);
+#color-mode {
+    background: linear-gradient(
+        90deg,
+        var(--current-color-mode-button-left) 0%,
+        var(--current-color-mode-button-right) 100%
+    );
 }
 
-#erase{
+#erase {
     background-color: var(--current-erase-button-backgroud);
 }
 
-#erase:active{
+#erase:active {
     background-color: var(--current-erase-button-active-backgroud);
 }
 
-#htmlCheckbox:checked+span{
+#htmlCheckbox:checked + span {
     color: var(--current-cancelled-text);
     text-decoration: line-through;
 }
 
-#submit{
+#submit {
     background-color: var(--current-submit-button-backgroud);
 }
 
-#submit:active{
+#submit:active {
     background-color: var(--current-submit-button-active-backgroud);
 }
