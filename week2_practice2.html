@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>flexbox & grid</title>
+        <link rel="stylesheet" href="./test.css" />
+        <script src="./light_dark_toggle.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            #flexed {
+                padding: 0;
+                list-style: none;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                margin: 0;
+            }
+
+            #flexed li {
+                background-color: #0f0;
+            }
+
+            #flexed li:nth-child(2n) {
+                background-color: greenyellow;
+            }
+
+            #resizable-div {
+                height: 400px;
+                width: 400px;
+                position: relative;
+                border: 1px solid#888;
+            }
+
+            #dragzone-horizontal {
+                width: 10px;
+                height: 100%;
+                cursor: ew-resize;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+
+            #dragzone-vertical {
+                width: 100%;
+                height: 10px;
+                cursor: ns-resize;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+
+            .tables-container {
+                display: flex;
+                width: 800px;
+                height: 400px;
+            }
+
+            .tables-container table {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+            output {
+                margin: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="color-mode">dark/light</button>
+        <!--ul, li는 기본 블록 디스플레이 속성-->
+
+        <div id="resizable-div">
+            <div id="dragzone-horizontal"></div>
+            <div id="dragzone-vertical"></div>
+            <ul id="flexed">
+                <li>호랑이</li>
+                <li>고양이</li>
+                <li>강아지</li>
+                <li>개구리</li>
+                <li>개나리</li>
+            </ul>
+        </div>
+
+        <div class="tables-container">
+            <table>
+                <tr>
+                    <td>flex-direction</td>
+                    <td>
+                        <select id="flex_direction">
+                            <option value="">None</option>
+                            <option value="flex-direction:row;">row</option>
+                            <option value="flex-direction:row-reverse;">row-reverse</option>
+                            <option value="flex-direction:column;">column</option>
+                            <option value="flex-direction:column-reverse;">column-reverse</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>flex-wrap</td>
+                    <td>
+                        <select id="flex_wrap">
+                            <option value="">None</option>
+                            <option value="flex-wrap:nowrap;">nowrap</option>
+                            <option value="flex-wrap:wrap;">wrap</option>
+                            <option value="flex-wrap:wrap-reverse;">wrap-reverse</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>justify-content</td>
+                    <td>
+                        <select id="justify_content">
+                            <option value="">None</option>
+                            <option value="justify-content:flex-start;">flex-start</option>
+                            <option value="justify-content:flex-end;">flex-end</option>
+                            <option value="justify-content:center;">center</option>
+                            <option value="justify-content:space-between;">space-between</option>
+                            <option value="justify-content:space-around;">space-around</option>
+                            <option value="justify-content:space-evenly;">space-evenly</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>align-items</td>
+                    <td>
+                        <select id="align_items">
+                            <option value="">None</option>
+                            <option value="align-items:stretch;">stretch</option>
+                            <option value="align-items:flex-start;">flex-start</option>
+                            <option value="align-items:flex-end;">flex-end</option>
+                            <option value="align-items:center;">center</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>align-content</td>
+                    <td>
+                        <select id="align_content">
+                            <option value="">None</option>
+                            <option value="align-content:flex-start;">flex-start</option>
+                            <option value="align-content:flex-end;">flex-end</option>
+                            <option value="align-content:center;">center</option>
+                            <option value="align-content:space-between;">space-between</option>
+                            <option value="align-content:space-around;">space-around</option>
+                            <option value="align-content:space-evenly;">space-evenly</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>nth-child</td>
+                    <td><input type="range" min="0" max="4" value="0" id="nth_child" /><output>0</output></td>
+                </tr>
+
+                <tr>
+                    <td>align-self</td>
+                    <td>
+                        <select id="align_self">
+                            <option value="">None</option>
+                            <option value="align-self:stretch;">stretch</option>
+                            <option value="align-self:flex-start;">flex-start</option>
+                            <option value="align-self:flex-end;">flex-end</option>
+                            <option value="align-self:center;">center</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>flex-grow</td>
+                    <td><input type="range" min="0" max="100" value="0" id="flex_grow" /><output>0</output></td>
+                </tr>
+
+                <tr>
+                    <td>flex-shrink</td>
+                    <td><input type="range" min="0" max="100" value="0" id="flex_shrink" /><output>0</output></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script>
+        // flex 스타일 조정
+        const alignSelfStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => '');
+        const flexGrowStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
+        const flexShrinkStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
+
+        function updateStyleFlexed() {
+            const flex_direction = document.getElementById('flex_direction').value;
+            const flex_wrap = document.getElementById('flex_wrap').value;
+            const justify_content = document.getElementById('justify_content').value;
+            const align_items = document.getElementById('align_items').value;
+            const align_content = document.getElementById('align_content').value;
+            const flexed = document.getElementById('flexed');
+            flexed.style = `${flex_direction}${flex_wrap}${justify_content}${align_items}${align_content}`.trim();
+        }
+
+        function updateStyleItems() {
+            const nthChild = document.getElementById('nth_child').value;
+            const align_self = document.getElementById('align_self').value;
+            const flex_grow = document.getElementById('flex_grow').value;
+            const flex_shrink = document.getElementById('flex_shrink').value;
+            const items = document.getElementById('flexed').getElementsByTagName('li');
+
+            items[nthChild].style = `${align_self}${'flex-grow:' + flex_grow + ';'}${'flex-shrink:' + flex_shrink} + ';'`.trim();
+
+            alignSelfStates[nthChild] = align_self;
+            flexGrowStates[nthChild] = flex_grow;
+            flexShrinkStates[nthChild] = flex_shrink;
+        }
+
+        function updateAlignSelfDropdown() {
+            const nthChild = document.getElementById('nth_child').value;
+            const align_self = document.getElementById('align_self');
+            const flex_grow = document.getElementById('flex_grow');
+            const flex_shrink = document.getElementById('flex_shrink');
+
+            align_self.value = alignSelfStates[nthChild];
+            flex_grow.value = flexGrowStates[nthChild];
+            flex_shrink.value = flexShrinkStates[nthChild];
+
+            if ('createEvent' in document) {
+                let evt = document.createEvent('HTMLEvents');
+                evt.initEvent('change', false, true);
+                align_self.dispatchEvent(evt);
+                flex_grow.dispatchEvent(evt);
+                flex_shrink.dispatchEvent(evt);
+            } else {
+                align_self.fireEvent('onchange');
+                flex_grow.fireEvent('onchange');
+                flex_shrink.fireEvent('onchange');
+            }
+        }
+
+        document.getElementById('flex_direction').addEventListener('change', updateStyleFlexed);
+        document.getElementById('flex_wrap').addEventListener('change', updateStyleFlexed);
+        document.getElementById('justify_content').addEventListener('change', updateStyleFlexed);
+        document.getElementById('align_items').addEventListener('change', updateStyleFlexed);
+        document.getElementById('align_content').addEventListener('change', updateStyleFlexed);
+
+        document.getElementById('align_self').addEventListener('change', updateStyleItems);
+        document.getElementById('flex_grow').addEventListener('change', updateStyleItems);
+        document.getElementById('flex_shrink').addEventListener('change', updateStyleItems);
+
+        document.getElementById('nth_child').addEventListener('change', updateAlignSelfDropdown);
+
+        // div 크기 조정
+        var box = document.getElementById('resizable-div'),
+            dragHorizontalElement = document.getElementById('dragzone-horizontal'),
+            dragVerticalElement = document.getElementById('dragzone-vertical'),
+            startHorizontal = false,
+            startVertical = false,
+            startWidth,
+            startHeight;
+
+        dragHorizontalElement.addEventListener('mousedown', function (e) {
+            startHorizontal = e.clientX;
+            startWidth = parseInt(document.defaultView.getComputedStyle(box).width, 10);
+            e.preventDefault();
+        });
+
+        dragVerticalElement.addEventListener('mousedown', function (e) {
+            startVertical = e.clientY;
+            startHeight = parseInt(document.defaultView.getComputedStyle(box).height, 10);
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', function (e) {
+            // both startHorizontal and startVertical will never be true at the same time, so use ||
+            if (startHorizontal) {
+                box.style.width = startWidth + e.clientX - startHorizontal + 'px';
+            }
+            if (startVertical) {
+                box.style.height = startHeight + e.clientY - startVertical + 'px';
+            }
+        });
+
+        window.addEventListener('mouseup', function () {
+            startHorizontal = false;
+            startVertical = false;
+            startWidth = null;
+            startHeight = null;
+        });
+
+        // range들 값 보이게하기
+        function showVal() {
+            this.nextElementSibling.value = this.value;
+        }
+
+        document.getElementById('nth_child').addEventListener('change', showVal);
+        document.getElementById('flex_grow').addEventListener('change', showVal);
+        document.getElementById('flex_shrink').addEventListener('change', showVal);
+    </script>
+</html>

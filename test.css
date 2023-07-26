@@ -65,18 +65,12 @@
     --current-input-background: var(--dark-input-background);
     --current-input-text: var(--dark-input-text);
     --current-erase-button-backgroud: var(--dark-erase-button-backgroud);
-    --current-erase-button-active-backgroud: var(
-        --dark-erase-button-active-backgroud
-    );
+    --current-erase-button-active-backgroud: var(--dark-erase-button-active-backgroud);
     --current-submit-button-backgroud: var(--dark-submit-button-backgroud);
-    --current-submit-button-active-backgroud: var(
-        --dark-submit-button-active-backgroud
-    );
+    --current-submit-button-active-backgroud: var(--dark-submit-button-active-backgroud);
     --current-cancelled-text: var(--dark-cancelled-text);
     --current-input-range-thumb: var(--dark-input-range-thumb);
-    --current-input-range-runnable-track: var(
-        --dark-input-range-runnable-track
-    );
+    --current-input-range-runnable-track: var(--dark-input-range-runnable-track);
     --current-color-mode-button-left: var(--dark-color-mode-button-left);
     --current-color-mode-button-right: var(--dark-color-mode-button-right);
 }
@@ -92,18 +86,12 @@
     --current-input-background: var(--light-input-background);
     --current-input-text: var(--light-input-text);
     --current-erase-button-backgroud: var(--light-erase-button-backgroud);
-    --current-erase-button-active-backgroud: var(
-        --light-erase-button-active-backgroud
-    );
+    --current-erase-button-active-backgroud: var(--light-erase-button-active-backgroud);
     --current-submit-button-backgroud: var(--light-submit-button-backgroud);
-    --current-submit-button-active-backgroud: var(
-        --light-submit-button-active-backgroud
-    );
+    --current-submit-button-active-backgroud: var(--light-submit-button-active-backgroud);
     --current-cancelled-text: var(--light-cancelled-text);
     --current-input-range-thumb: var(--light-input-range-thumb);
-    --current-input-range-runnable-track: var(
-        --light-input-range-runnable-track
-    );
+    --current-input-range-runnable-track: var(--light-input-range-runnable-track);
     --current-color-mode-button-left: var(--light-color-mode-button-left);
     --current-color-mode-button-right: var(--light-color-mode-button-right);
 }
@@ -179,11 +167,7 @@ input[type='range']:hover::-webkit-slider-thumb {
 }
 
 #color-mode {
-    background: linear-gradient(
-        90deg,
-        var(--current-color-mode-button-left) 0%,
-        var(--current-color-mode-button-right) 100%
-    );
+    background: linear-gradient(90deg, var(--current-color-mode-button-left) 0%, var(--current-color-mode-button-right) 100%);
 }
 
 #erase {
