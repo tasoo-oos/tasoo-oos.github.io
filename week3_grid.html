@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./test.css" />
+        <title>grid</title>
+        <script src="./light_dark_toggle.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            #grided {
+                padding: 0;
+                list-style-type: none;
+                width: 100%;
+                height: 100%;
+                border: 5px solid #888;
+                display: grid;
+                margin: 0;
+            }
+
+            #grided li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #0f0;
+                border: 3px solid yellowgreen;
+                border-radius: 8px;
+                color: black;
+            }
+
+            #resizable-div {
+                height: 400px;
+                width: 300px;
+                position: relative;
+                border: 1px solid#888;
+            }
+
+            #dragzone-horizontal {
+                width: 10px;
+                height: 100%;
+                cursor: ew-resize;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+
+            #dragzone-vertical {
+                width: 100%;
+                height: 10px;
+                cursor: ns-resize;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>grid 체험</h1>
+        <h3>이 사이트는 둘러만 보고 직접 코드를 짜볼 것을 강력히 추천함</h3>
+        <button id="color-mode">dark/light</button>
+        <hr />
+
+        <div id="resizable-div">
+            <div id="dragzone-horizontal"></div>
+            <div id="dragzone-vertical"></div>
+            <ul id="grided">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+        </div>
+
+        <table id="controls">
+            <tr>
+                <td><label for="columnInput">Columns</label></td>
+                <td><input id="columnInput" type="text" value="" /></td>
+            </tr>
+            <tr>
+                <td><label for="rowInput">Rows</label></td>
+                <td><input id="rowInput" type="text" value="" /></td>
+            </tr>
+            <tr>
+                <td><label for="gap">Gap</label></td>
+                <td><input type="range" min="0" max="50" value="0" id="gap" /><output>0</output></td>
+            </tr>
+        </table>
+        <button id="updateGrid">Update Grid</button>
+    </body>
+    <script>
+        // div 크기 조정
+        let box, dragHorizontalElement, dragVerticalElement, startHorizontal, startVertical, startWidth, startHeight;
+
+        // Define minimum size
+        const MIN_SIZE = 50;
+
+        // Function to handle horizontal resizing
+        function handleHorizontalResize(e) {
+            if (startHorizontal) {
+                const newWidth = startWidth + e.clientX - startHorizontal;
+                if (newWidth > MIN_SIZE) {
+                    box.style.width = newWidth + 'px';
+                }
+            }
+        }
+
+        // Function to handle vertical resizing
+        function handleVerticalResize(e) {
+            if (startVertical) {
+                const newHeight = startHeight + e.clientY - startVertical;
+                if (newHeight > MIN_SIZE) {
+                    box.style.height = newHeight + 'px';
+                }
+            }
+        }
+
+        // Initialize elements and event listeners
+        box = document.getElementById('resizable-div');
+        dragHorizontalElement = document.getElementById('dragzone-horizontal');
+        dragVerticalElement = document.getElementById('dragzone-vertical');
+
+        dragHorizontalElement.addEventListener('mousedown', function (e) {
+            startHorizontal = e.clientX;
+            startWidth = parseInt(document.defaultView.getComputedStyle(box).width, 10);
+            e.preventDefault();
+        });
+
+        dragVerticalElement.addEventListener('mousedown', function (e) {
+            startVertical = e.clientY;
+            startHeight = parseInt(document.defaultView.getComputedStyle(box).height, 10);
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', function (e) {
+            window.requestAnimationFrame(function () {
+                handleHorizontalResize(e);
+                handleVerticalResize(e);
+            });
+        });
+
+        window.addEventListener('mouseup', function () {
+            startHorizontal = false;
+            startVertical = false;
+            startWidth = null;
+            startHeight = null;
+        });
+
+        const grid = document.getElementById('grided');
+
+        // grid
+        const updateGrid = document.getElementById('updateGrid');
+        const columnInput = document.getElementById('columnInput');
+        const rownInput = document.getElementById('rowInput');
+        const gap = document.getElementById('gap');
+
+        function updateGridColumns() {
+            grid.style.gridTemplateColumns = columnInput.value;
+        }
+
+        function updateGridRows() {
+            grid.style.gridTemplateRows = rownInput.value;
+        }
+
+        function updateGap() {
+            grid.style.gridGap = gap.value + 'px';
+        }
+
+        updateGrid.addEventListener('click', function () {
+            updateGridColumns();
+            updateGridRows();
+            updateGap();
+        });
+
+        columnInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                updateGridColumns();
+            }
+        });
+
+        rownInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                updateGridRows();
+            }
+        });
+
+        gap.addEventListener('change', updateGap);
+
+        // range들 값 보이게하기
+        function showVal() {
+            this.nextElementSibling.value = this.value;
+        }
+        gap.addEventListener('change', showVal);
+    </script>
+</html>

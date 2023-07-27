@@ -3,7 +3,7 @@
     <head>
         <meta name="author" content="Tasoo Park" />
         <meta charset="utf-8" />
-        <title>flexbox & grid</title>
+        <title>flex</title>
         <link rel="stylesheet" href="./test.css" />
         <script src="./light_dark_toggle.js"></script>
         <style>
@@ -25,16 +25,32 @@
             }
 
             #flexed li {
-                background-color: #0f0;
+                color: black;
             }
 
-            #flexed li:nth-child(2n) {
-                background-color: greenyellow;
+            #flexed li:nth-child(1) {
+                background-color: #ff7f7f; /* Light Red */
+            }
+
+            #flexed li:nth-child(2) {
+                background-color: #ffe77a; /* Light Yellow */
+            }
+
+            #flexed li:nth-child(3) {
+                background-color: #7fff7f; /* Light Green */
+            }
+
+            #flexed li:nth-child(4) {
+                background-color: #7fa0ff; /* Light Blue */
+            }
+
+            #flexed li:nth-child(5) {
+                background-color: #d67aff; /* Light Violet */
             }
 
             #resizable-div {
                 height: 400px;
-                width: 400px;
+                width: 300px;
                 position: relative;
                 border: 1px solid#888;
             }
@@ -60,7 +76,7 @@
             .tables-container {
                 display: flex;
                 width: 800px;
-                height: 400px;
+                height: 300px;
             }
 
             .tables-container table {
@@ -184,12 +200,22 @@
 
                 <tr>
                     <td>flex-grow</td>
-                    <td><input type="range" min="0" max="100" value="0" id="flex_grow" /><output>0</output></td>
+                    <td><input type="range" min="0" max="10" step="0.1" value="0" id="flex_grow" /><output>0</output></td>
                 </tr>
 
                 <tr>
                     <td>flex-shrink</td>
-                    <td><input type="range" min="0" max="100" value="0" id="flex_shrink" /><output>0</output></td>
+                    <td><input type="range" min="0" max="10" step="0.1" value="0" id="flex_shrink" /><output>0</output></td>
+                </tr>
+
+                <tr>
+                    <td>flex-basis</td>
+                    <td><input type="range" min="0" max="300" value="0" id="flex_basis" /><output>0</output></td>
+                </tr>
+
+                <tr>
+                    <td>order</td>
+                    <td><input type="range" min="-10" max="10" step="1" value="0" id="order" /><output>0</output></td>
                 </tr>
             </table>
         </div>
@@ -199,8 +225,10 @@
         const alignSelfStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => '');
         const flexGrowStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
         const flexShrinkStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
+        const flexBasisStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
+        const orderStates = Array.from(document.getElementById('flexed').getElementsByTagName('li')).map(() => 0);
 
-        function updateStyleFlexed() {
+        function updateStyleContainer() {
             const flex_direction = document.getElementById('flex_direction').value;
             const flex_wrap = document.getElementById('flex_wrap').value;
             const justify_content = document.getElementById('justify_content').value;
@@ -210,29 +238,53 @@
             flexed.style = `${flex_direction}${flex_wrap}${justify_content}${align_items}${align_content}`.trim();
         }
 
+        document.getElementById('flex_direction').addEventListener('change', updateStyleContainer);
+        document.getElementById('flex_wrap').addEventListener('change', updateStyleContainer);
+        document.getElementById('justify_content').addEventListener('change', updateStyleContainer);
+        document.getElementById('align_items').addEventListener('change', updateStyleContainer);
+        document.getElementById('align_content').addEventListener('change', updateStyleContainer);
+
         function updateStyleItems() {
             const nthChild = document.getElementById('nth_child').value;
             const align_self = document.getElementById('align_self').value;
             const flex_grow = document.getElementById('flex_grow').value;
             const flex_shrink = document.getElementById('flex_shrink').value;
+            const flex_basis = document.getElementById('flex_basis').value;
+            const order = document.getElementById('order').value;
             const items = document.getElementById('flexed').getElementsByTagName('li');
 
-            items[nthChild].style = `${align_self}${'flex-grow:' + flex_grow + ';'}${'flex-shrink:' + flex_shrink} + ';'`.trim();
+            const flex_grow_after = flex_grow > 0 ? flex_grow : 'auto';
+            const flex_shrink_after = flex_shrink > 0 ? flex_shrink : 'auto';
+            const flex_basis_after = flex_basis > 0 ? flex_basis + 'px' : 'auto';
+
+            items[nthChild].style = `${align_self} flex-grow: ${flex_grow_after}; flex-shrink: ${flex_shrink_after}; flex-basis: ${flex_basis_after}; order: ${order}`.trim();
 
             alignSelfStates[nthChild] = align_self;
             flexGrowStates[nthChild] = flex_grow;
             flexShrinkStates[nthChild] = flex_shrink;
+            flexBasisStates[nthChild] = flex_basis;
+            orderStates[nthChild] = order;
         }
 
-        function updateAlignSelfDropdown() {
+        document.getElementById('align_self').addEventListener('change', updateStyleItems);
+        document.getElementById('flex_grow').addEventListener('change', updateStyleItems);
+        document.getElementById('flex_shrink').addEventListener('change', updateStyleItems);
+        document.getElementById('flex_basis').addEventListener('change', updateStyleItems);
+        document.getElementById('order').addEventListener('change', updateStyleItems);
+
+        function updateItemSetting() {
             const nthChild = document.getElementById('nth_child').value;
             const align_self = document.getElementById('align_self');
             const flex_grow = document.getElementById('flex_grow');
             const flex_shrink = document.getElementById('flex_shrink');
+            const flex_basis = document.getElementById('flex_basis');
+            const order = document.getElementById('order');
 
             align_self.value = alignSelfStates[nthChild];
             flex_grow.value = flexGrowStates[nthChild];
             flex_shrink.value = flexShrinkStates[nthChild];
+            flex_basis.value = flexBasisStates[nthChild];
+            order.value = orderStates[nthChild];
 
             if ('createEvent' in document) {
                 let evt = document.createEvent('HTMLEvents');
@@ -240,24 +292,18 @@
                 align_self.dispatchEvent(evt);
                 flex_grow.dispatchEvent(evt);
                 flex_shrink.dispatchEvent(evt);
+                flex_basis.dispatchEvent(evt);
+                order.dispatchEvent(evt);
             } else {
                 align_self.fireEvent('onchange');
                 flex_grow.fireEvent('onchange');
                 flex_shrink.fireEvent('onchange');
+                flex_basis.fireEvent('onchange');
+                order.fireEvent('onchange');
             }
         }
 
-        document.getElementById('flex_direction').addEventListener('change', updateStyleFlexed);
-        document.getElementById('flex_wrap').addEventListener('change', updateStyleFlexed);
-        document.getElementById('justify_content').addEventListener('change', updateStyleFlexed);
-        document.getElementById('align_items').addEventListener('change', updateStyleFlexed);
-        document.getElementById('align_content').addEventListener('change', updateStyleFlexed);
-
-        document.getElementById('align_self').addEventListener('change', updateStyleItems);
-        document.getElementById('flex_grow').addEventListener('change', updateStyleItems);
-        document.getElementById('flex_shrink').addEventListener('change', updateStyleItems);
-
-        document.getElementById('nth_child').addEventListener('change', updateAlignSelfDropdown);
+        document.getElementById('nth_child').addEventListener('change', updateItemSetting);
 
         // div 크기 조정
         var box = document.getElementById('resizable-div'),
@@ -305,5 +351,7 @@
         document.getElementById('nth_child').addEventListener('change', showVal);
         document.getElementById('flex_grow').addEventListener('change', showVal);
         document.getElementById('flex_shrink').addEventListener('change', showVal);
+        document.getElementById('flex_basis').addEventListener('change', showVal);
+        document.getElementById('order').addEventListener('change', showVal);
     </script>
 </html>
