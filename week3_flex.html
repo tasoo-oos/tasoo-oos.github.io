@@ -306,13 +306,31 @@
         document.getElementById('nth_child').addEventListener('change', updateItemSetting);
 
         // div 크기 조정
-        var box = document.getElementById('resizable-div'),
-            dragHorizontalElement = document.getElementById('dragzone-horizontal'),
-            dragVerticalElement = document.getElementById('dragzone-vertical'),
-            startHorizontal = false,
-            startVertical = false,
-            startWidth,
-            startHeight;
+        let box, dragHorizontalElement, dragVerticalElement, startHorizontal, startVertical, startWidth, startHeight;
+
+        const MIN_SIZE = 50;
+
+        function handleHorizontalResize(e) {
+            if (startHorizontal) {
+                const newWidth = startWidth + e.clientX - startHorizontal;
+                if (newWidth > MIN_SIZE) {
+                    box.style.width = newWidth + 'px';
+                }
+            }
+        }
+
+        function handleVerticalResize(e) {
+            if (startVertical) {
+                const newHeight = startHeight + e.clientY - startVertical;
+                if (newHeight > MIN_SIZE) {
+                    box.style.height = newHeight + 'px';
+                }
+            }
+        }
+
+        box = document.getElementById('resizable-div');
+        dragHorizontalElement = document.getElementById('dragzone-horizontal');
+        dragVerticalElement = document.getElementById('dragzone-vertical');
 
         dragHorizontalElement.addEventListener('mousedown', function (e) {
             startHorizontal = e.clientX;
@@ -327,13 +345,10 @@
         });
 
         window.addEventListener('mousemove', function (e) {
-            // both startHorizontal and startVertical will never be true at the same time, so use ||
-            if (startHorizontal) {
-                box.style.width = startWidth + e.clientX - startHorizontal + 'px';
-            }
-            if (startVertical) {
-                box.style.height = startHeight + e.clientY - startVertical + 'px';
-            }
+            window.requestAnimationFrame(function () {
+                handleHorizontalResize(e);
+                handleVerticalResize(e);
+            });
         });
 
         window.addEventListener('mouseup', function () {

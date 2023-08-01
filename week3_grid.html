@@ -37,7 +37,7 @@
 
             #resizable-div {
                 height: 400px;
-                width: 300px;
+                width: 600px;
                 position: relative;
                 border: 1px solid#888;
             }
@@ -59,6 +59,16 @@
                 right: 0;
                 bottom: 0;
             }
+
+            .tables-container {
+                display: flex;
+                height: 300px;
+            }
+
+            .tables-container table {
+                flex: 1;
+                margin-right: 10px;
+            }
         </style>
     </head>
     <body>
@@ -76,33 +86,131 @@
                 <li>3</li>
                 <li>4</li>
                 <li>5</li>
+                <li>6</li>
             </ul>
         </div>
 
-        <table id="controls">
-            <tr>
-                <td><label for="columnInput">Columns</label></td>
-                <td><input id="columnInput" type="text" value="" /></td>
-            </tr>
-            <tr>
-                <td><label for="rowInput">Rows</label></td>
-                <td><input id="rowInput" type="text" value="" /></td>
-            </tr>
-            <tr>
-                <td><label for="gap">Gap</label></td>
-                <td><input type="range" min="0" max="50" value="0" id="gap" /><output>0</output></td>
-            </tr>
-        </table>
-        <button id="updateGrid">Update Grid</button>
+        <div class="tables-container">
+            <table id="GridControl">
+                <tr>
+                    <td><button id="updateGrid">Update Grid</button></td>
+                </tr>
+                <tr>
+                    <td><label for="columnInput">Columns</label></td>
+                    <td><input id="columnInput" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td><label for="rowInput">Rows</label></td>
+                    <td><input id="rowInput" type="text" value="" /></td>
+                </tr>
+                <tr>
+                    <td><label for="gap">Gap</label></td>
+                    <td><input type="range" min="0" max="50" value="0" id="gap" /><output>0</output></td>
+                </tr>
+                <tr>
+                    <td><label for="alignItems">align-items</label></td>
+                    <td>
+                        <select id="alignItems">
+                            <option value="auto">None</option>
+                            <option value="stretch">stretch</option>
+                            <option value="center">center</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="justifyItems">justify-items</label></td>
+                    <td>
+                        <select id="justifyItems">
+                            <option value="auto">None</option>
+                            <option value="stretch">stretch</option>
+                            <option value="center">center</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="alignContent">align-Content</label></td>
+                    <td>
+                        <select id="alignContent">
+                            <option value="auto">None</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="justifyContent">justify-Content</label></td>
+                    <td>
+                        <select id="justifyContent">
+                            <option value="auto">None</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                            <option value="center">center</option>
+                            <option value="space-between">space-between</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="gridItemArea">
+                <tr>
+                    <td><label for="nthChild">nth Child</label></td>
+                    <td><input type="range" min="0" max="5" value="0" id="nthChild" /><output>1</output></td>
+                </tr>
+                <tr>
+                    <td><label for="gridRowStart">grid Row Start</label></td>
+                    <td><input type="range" min="0" max="10" value="0" id="gridRowStart" /><output>auto</output></td>
+                </tr>
+                <tr>
+                    <td><label for="gridRowEnd">grid Row End</label></td>
+                    <td><input type="range" min="0" max="10" value="0" id="gridRowEnd" /><output>auto</output></td>
+                </tr>
+                <tr>
+                    <td><label for="gridColumnStart">grid Column Start</label></td>
+                    <td><input type="range" min="0" max="10" value="0" id="gridColumnStart" /><output>auto</output></td>
+                </tr>
+                <tr>
+                    <td><label for="gridColumnEnd">grid Column End</label></td>
+                    <td><input type="range" min="0" max="10" value="0" id="gridColumnEnd" /><output>auto</output></td>
+                </tr>
+                <tr>
+                    <td><label for="alignSelf">align-self</label></td>
+                    <td>
+                        <select id="alignSelf">
+                            <option value="auto">None</option>
+                            <option value="stretch">stretch</option>
+                            <option value="center">center</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="justifySelf">justify-self</label></td>
+                    <td>
+                        <select id="justifySelf">
+                            <option value="auto">None</option>
+                            <option value="stretch">stretch</option>
+                            <option value="center">center</option>
+                            <option value="start">start</option>
+                            <option value="end">end</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
     <script>
         // div 크기 조정
         let box, dragHorizontalElement, dragVerticalElement, startHorizontal, startVertical, startWidth, startHeight;
 
-        // Define minimum size
         const MIN_SIZE = 50;
 
-        // Function to handle horizontal resizing
         function handleHorizontalResize(e) {
             if (startHorizontal) {
                 const newWidth = startWidth + e.clientX - startHorizontal;
@@ -112,7 +220,6 @@
             }
         }
 
-        // Function to handle vertical resizing
         function handleVerticalResize(e) {
             if (startVertical) {
                 const newHeight = startHeight + e.clientY - startVertical;
@@ -122,7 +229,6 @@
             }
         }
 
-        // Initialize elements and event listeners
         box = document.getElementById('resizable-div');
         dragHorizontalElement = document.getElementById('dragzone-horizontal');
         dragVerticalElement = document.getElementById('dragzone-vertical');
@@ -153,52 +259,134 @@
             startHeight = null;
         });
 
+        // grid
         const grid = document.getElementById('grided');
 
-        // grid
-        const updateGrid = document.getElementById('updateGrid');
+        const updateGridBtn = document.getElementById('updateGrid');
+
         const columnInput = document.getElementById('columnInput');
         const rownInput = document.getElementById('rowInput');
         const gap = document.getElementById('gap');
+        const alignItems = document.getElementById('alignItems');
+        const justifyItems = document.getElementById('justifyItems');
+        const alignContent = document.getElementById('alignContent');
+        const justifyContent = document.getElementById('justifyContent');
 
-        function updateGridColumns() {
+        function updateGrid() {
             grid.style.gridTemplateColumns = columnInput.value;
-        }
-
-        function updateGridRows() {
             grid.style.gridTemplateRows = rownInput.value;
-        }
-
-        function updateGap() {
             grid.style.gridGap = gap.value + 'px';
+            grid.style.alignItems = alignItems.value;
+            grid.style.justifyItems = justifyItems.value;
+            grid.style.alignContent = alignContent.value;
+            grid.style.justifyContent = justifyContent.value;
         }
 
-        updateGrid.addEventListener('click', function () {
-            updateGridColumns();
-            updateGridRows();
-            updateGap();
-        });
-
-        columnInput.addEventListener('keydown', function (e) {
+        function updateGridIfEnter(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                updateGridColumns();
+                updateGrid();
             }
-        });
+        }
 
-        rownInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                updateGridRows();
+        updateGridBtn.addEventListener('click', updateGrid);
+        columnInput.addEventListener('keydown', updateGridIfEnter);
+        rowInput.addEventListener('keydown', updateGridIfEnter);
+        gap.addEventListener('change', updateGrid);
+        alignItems.addEventListener('change', updateGrid);
+        justifyItems.addEventListener('change', updateGrid);
+        alignContent.addEventListener('change', updateGrid);
+        justifyContent.addEventListener('change', updateGrid);
+
+        // item
+        const gridRowStartStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => 0);
+        const gridRowEndStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => 0);
+        const gridColumnStartStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => 0);
+        const gridColumnEndStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => 0);
+        const alignSelfStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => '');
+        const justifySelfStates = Array.from(document.getElementById('grided').getElementsByTagName('li')).map(() => '');
+
+        const items = document.getElementById('grided').getElementsByTagName('li');
+        const nthChild = document.getElementById('nthChild');
+
+        const gridRowStart = document.getElementById('gridRowStart');
+        const gridRowEnd = document.getElementById('gridRowEnd');
+        const gridColumnStart = document.getElementById('gridColumnStart');
+        const gridColumnEnd = document.getElementById('gridColumnEnd');
+        const alignSelf = document.getElementById('alignSelf');
+        const justifySelf = document.getElementById('justifySelf');
+
+        function updateGridItem() {
+            const rowStartRes = gridRowStart.value == 0 ? 'auto' : gridRowStart.value;
+            const rowEndRes = gridRowEnd.value == 0 ? 'auto' : gridRowEnd.value;
+            const columnStartRes = gridColumnStart.value == 0 ? 'auto' : gridColumnStart.value;
+            const columnEndRes = gridColumnEnd.value == 0 ? 'auto' : gridColumnEnd.value;
+            const alignSelftRes = alignSelf.value;
+            const justifySelfRes = justifySelf.value;
+
+            items[nthChild.value].style = `grid-row: ${rowStartRes} / ${rowEndRes}; grid-column: ${columnStartRes} / ${columnEndRes}; align-self:${alignSelftRes}; justify-self:${justifySelfRes};`;
+
+            gridRowStartStates[nthChild.value] = gridRowStart.value;
+            gridRowEndStates[nthChild.value] = gridRowEnd.value;
+            gridColumnStartStates[nthChild.value] = gridColumnStart.value;
+            gridColumnEndStates[nthChild.value] = gridColumnEnd.value;
+            alignSelfStates[nthChild.value] = alignSelf.value;
+            justifySelfStates[nthChild.value] = justifySelf.value;
+        }
+
+        gridRowStart.addEventListener('change', updateGridItem);
+        gridRowEnd.addEventListener('change', updateGridItem);
+        gridColumnStart.addEventListener('change', updateGridItem);
+        gridColumnEnd.addEventListener('change', updateGridItem);
+        alignSelf.addEventListener('change', updateGridItem);
+        justifySelf.addEventListener('change', updateGridItem);
+
+        function updateItemSetting() {
+            gridRowStart.value = gridRowStartStates[nthChild.value];
+            gridRowEnd.value = gridRowEndStates[nthChild.value];
+            gridColumnStart.value = gridColumnStartStates[nthChild.value];
+            gridColumnEnd.value = gridColumnEndStates[nthChild.value];
+            alignSelf.value = alignSelfStates[nthChild.value];
+            justifySelf.value = justifySelfStates[nthChild.value];
+
+            if ('createEvent' in document) {
+                let evt = document.createEvent('HTMLEvents');
+                evt.initEvent('change', false, true);
+                gridRowStart.dispatchEvent(evt);
+                gridRowEnd.dispatchEvent(evt);
+                gridColumnStart.dispatchEvent(evt);
+                gridColumnEnd.dispatchEvent(evt);
+                alignSelf.dispatchEvent(evt);
+                justifySelf.dispatchEvent(evt);
+            } else {
+                gridRowStart.fireEvent('onchange');
+                gridRowEnd.fireEvent('onchange');
+                gridColumnStart.fireEvent('onchange');
+                gridColumnEnd.fireEvent('onchange');
+                alignSelf.fireEvent('onchange');
+                justifySelf.fireEvent('onchange');
             }
-        });
+        }
 
-        gap.addEventListener('change', updateGap);
+        nthChild.addEventListener('change', updateItemSetting);
 
         // range들 값 보이게하기
-        function showVal() {
-            this.nextElementSibling.value = this.value;
+        function showProperty() {
+            this.nextElementSibling.value = this.value == 0 ? 'auto' : this.value;
         }
-        gap.addEventListener('change', showVal);
+
+        function showChild() {
+            this.nextElementSibling.value = 1 + parseInt(this.value, 10);
+        }
+
+        nthChild.addEventListener('change', showChild);
+
+        gap.addEventListener('change', showProperty);
+        gridRowStart.addEventListener('change', showProperty);
+        gridRowEnd.addEventListener('change', showProperty);
+        gridColumnStart.addEventListener('change', showProperty);
+        gridColumnEnd.addEventListener('change', showProperty);
+
+        nthChild.addEventListener('change', updateItemSetting);
     </script>
 </html>
