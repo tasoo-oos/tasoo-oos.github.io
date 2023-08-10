@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-bs-theme="dark">
     <head>
         <meta name="author" content="Tasoo Park" />
         <meta charset="utf-8" />
         <title>front end portfolio</title>
-        <link rel="stylesheet" href="./test.css" />
+        <link rel="stylesheet" href="./scss/bootstrap-support.css" />
         <script src="./light_dark_toggle.js"></script>
     </head>
     <body>
         <h1>목록</h1>
         <button id="color-mode">dark/light</button>
-        <table>
+        <table class="table table-striped table-hover">
             <tr>
-                <th>week 1</th>
+                <th scope="row">week 1</th>
                 <td><a href="./week1_practice.html">practice</a></td>
                 <td><a href="./week1_problem1.html">problem 1</a></td>
                 <td><a href="./week1_problem2.html">problem 2</a></td>
             </tr>
             <tr>
-                <th>week 2</th>
-                <td><a href="./week2_practice.html">bonobono</a></td>
+                <th scope="row">week 2</th>
+                <td colspan="3"><a href="./week2_practice.html">bonobono</a></td>
+            </tr>
+            <tr>
+                <th scope="row">week 3</th>
                 <td><a href="./week3_flex.html">flex</a></td>
                 <td><a href="./week3_grid.html">grid</a></td>
+            </tr>
+            <tr>
+                <th scope="row">week 4</th>
             </tr>
         </table>
     </body>

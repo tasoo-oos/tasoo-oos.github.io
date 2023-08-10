@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-bs-theme="dark">
     <head>
         <meta name="author" content="Tasoo Park" />
         <meta charset="utf-8" />
         <title>프엔 경연대회</title>
-        <link rel="stylesheet" href="./test.css" />
+        <link rel="stylesheet" href="./scss/bootstrap-support.css" />
+        <link rel="stylesheet" href="./scss/basic-style.css" />
         <script src="./light_dark_toggle.js"></script>
     </head>
     <body>
@@ -25,24 +26,14 @@
                 </ul>
 
                 <h3>지원분야</h3>
-                <input type="checkbox" name="language" /><span>c/c++</span>
-                <input type="checkbox" name="language" /><span>python</span>
-                <input type="checkbox" name="language" /><span>javascript</span>
-                <input type="checkbox" name="language" id="htmlCheckbox" /><span
-                    >html</span
-                >
+                <input type="checkbox" name="language" /><span>c/c++</span> <input type="checkbox" name="language" /><span>python</span> <input type="checkbox" name="language" /><span>javascript</span> <input type="checkbox" name="language" id="htmlCheckbox" /><span>html</span>
 
                 <p id="warningText"></p>
 
                 <h3>할 말</h3>
                 <textarea name="message" rows="8" cols="30"></textarea><br />
 
-                <input
-                    type="button"
-                    value="제출"
-                    id="submit"
-                    onclick="alert('뻥이지롱~');"
-                />
+                <input type="button" value="제출" id="submit" onclick="alert('뻥이지롱~');" />
 
                 <input type="button" value="내용 지우기" id="erase" />
 
@@ -50,15 +41,7 @@
                 <input type="file" name="portfolio" />
 
                 <h3>자신의 실력</h3>
-                <input
-                    type="range"
-                    name="points"
-                    id="programming-skill"
-                    min="0"
-                    max="3"
-                    step="1"
-                    value="0"
-                />
+                <input type="range" name="points" id="programming-skill" min="0" max="3" step="1" value="0" />
                 <p id="skillLevelText">실력: 초보</p>
 
                 <h3>희망 대회 일시</h3>
@@ -83,9 +66,7 @@
         });
 
         htmlCheckbox.addEventListener('change', () => {
-            warningText.textContent = htmlCheckbox.checked
-                ? 'HTML은 프로그래밍 언어가 아닙니다.'
-                : '';
+            warningText.textContent = htmlCheckbox.checked ? 'HTML은 프로그래밍 언어가 아닙니다.' : '';
         });
 
         rangeInput.addEventListener('change', () => {
