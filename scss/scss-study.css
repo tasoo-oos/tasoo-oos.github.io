@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/*
+여러 줄 주석 : css에 반영
+*/
+.container-one {
+  background-color: yellow;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 900;
+}
+.container-one h1 {
+  color: green;
+}
+.container-one p {
+  color: tomato;
+}
+.container-one p span {
+  background-color: blue;
+}
+
+.container-two {
+  width: 500px;
+  background-color: yellow;
+}
+.container-two p:nth-child(1) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 20px;
+}
+.container-two p:nth-child(2) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 40px;
+}
+.container-two p:nth-child(3) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 60px;
+}
+
+.container-three {
+  width: 500px;
+  background-color: green;
+}
+.container-three p:nth-child(1) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.container-three p:nth-child(2) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.container-three p:nth-child(3) {
+  background-color: cyan;
+  color: yellowgreen;
+  font-size: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#scam {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: auto;
+  height: auto;
+}
+#scam.expanded {
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+}/*# sourceMappingURL=scss-study.css.map */

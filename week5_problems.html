@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="dark">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>js</title>
+    </head>
+    <body>
+        <input type="color" value="#00d1a7" id="colorPicker" />
+        <input type="button" value="greeting" id="greeting" />
+        <br />
+        <p id="jenny" hidden>Hi! My name is jenny.</p>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const colorPicker = document.getElementById('colorPicker');
+
+                colorPicker.addEventListener('input', function (event) {
+                    document.body.style.backgroundColor = event.target.value;
+                });
+
+                colorPicker.dispatchEvent(new Event('input'));
+            });
+
+            let a = 7;
+            let b = 3;
+            console.log(a + b);
+            console.log(a - b);
+            console.log(a * b);
+            console.log(a / b);
+
+            let myName = '박태수';
+            myName = '@jilovesyouwon';
+            console.log('내 이름은 ' + myName);
+
+            document.getElementById('greeting').addEventListener('click', function greeting() {
+                const jenny = document.getElementById('jenny');
+                jenny.toggleAttribute('hidden');
+                console.log('Hi! My name is jenny.');
+            });
+
+            function introduce(age, name) {
+                console.log(age + '살 ' + name);
+            }
+
+            const info = {
+                1: '김규리',
+                2: '박태수',
+                3: '정현우',
+                4: '김서현',
+                5: '김민지',
+            };
+
+            Object.entries(info).forEach(([key, value]) => {
+                introduce(key, value);
+            });
+        </script>
+    </body>
+</html>

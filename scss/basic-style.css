@@ -1,128 +1,128 @@
 :root.theme-dark {
-    --body-background: #000;
-    --body-foreground: #fff;
-    --table-background: #333;
-    --table-border: #ccc;
-    --a-text: #0f6;
-    --a-text-hovered: #06f;
-    --input-background: #333;
-    --input-text: #fff;
-    --erase-button-backgroud: #c00;
-    --erase-button-active-backgroud: #500;
-    --submit-button-backgroud: #06c;
-    --submit-button-active-backgroud: #005;
-    --cancelled-text: #888;
-    --input-range-thumb: #5cd5eb;
-    --input-range-runnable-track: #053a5f;
-    --color-mode-button-left: #333;
-    --color-mode-button-right: #ccc;
+  --body-background: #000;
+  --body-foreground: #fff;
+  --table-background: #333;
+  --table-border: #ccc;
+  --a-text: #0f6;
+  --a-text-hovered: #06f;
+  --input-background: #333;
+  --input-text: #fff;
+  --erase-button-backgroud: #c00;
+  --erase-button-active-backgroud: #500;
+  --submit-button-backgroud: #06c;
+  --submit-button-active-backgroud: #005;
+  --cancelled-text: #888;
+  --input-range-thumb: #5cd5eb;
+  --input-range-runnable-track: #053a5f;
+  --color-mode-button-left: #333;
+  --color-mode-button-right: #ccc;
 }
 
 :root.theme-light {
-    --body-background: #fff;
-    --body-foreground: #000;
-    --table-background: #ccc;
-    --table-border: #333;
-    --a-text: #06f;
-    --a-text-hovered: #0f6;
-    --input-background: #fff;
-    --input-text: #000;
-    --erase-button-backgroud: #c00;
-    --erase-button-active-backgroud: #f30;
-    --submit-button-backgroud: #06c;
-    --submit-button-active-backgroud: #08f;
-    --cancelled-text: #888;
-    --input-range-thumb: #053a5f;
-    --input-range-runnable-track: #5cd5eb;
-    --color-mode-button-left: #ccc;
-    --color-mode-button-right: #333;
+  --body-background: #fff;
+  --body-foreground: #000;
+  --table-background: #ccc;
+  --table-border: #333;
+  --a-text: #06f;
+  --a-text-hovered: #0f6;
+  --input-background: #fff;
+  --input-text: #000;
+  --erase-button-backgroud: #c00;
+  --erase-button-active-backgroud: #f30;
+  --submit-button-backgroud: #06c;
+  --submit-button-active-backgroud: #08f;
+  --cancelled-text: #888;
+  --input-range-thumb: #053a5f;
+  --input-range-runnable-track: #5cd5eb;
+  --color-mode-button-left: #ccc;
+  --color-mode-button-right: #333;
 }
 
 body {
-    background-color: var(--body-background);
-    color: var(--body-foreground);
+  background-color: var(--body-background);
+  color: var(--body-foreground);
 }
 
 table {
-    border: 2px solid var(--table-border);
-    background-color: var(--table-background);
-    border-collapse: collapse;
+  border: 2px solid var(--table-border);
+  background-color: var(--table-background);
+  border-collapse: collapse;
 }
 
 th,
 td {
-    border: 1px solid var(--table-border);
-    padding: 8px;
-    text-align: left;
+  border: 1px solid var(--table-border);
+  padding: 8px;
+  text-align: left;
 }
 
 a {
-    color: var(--a-text);
+  color: var(--a-text);
 }
 a:hover {
-    color: var(--a-text-hovered);
-    transition-duration: 0.5s;
+  color: var(--a-text-hovered);
+  transition-duration: 0.5s;
 }
 
 button {
-    background-color: var(--table-background);
-    border: 1px solid var(--table-border);
-    color: var(--body-foreground);
+  background-color: var(--table-background);
+  border: 1px solid var(--table-border);
+  color: var(--body-foreground);
 }
 
 input,
 textarea {
-    background-color: var(--input-background);
-    color: var(--input-text);
+  background-color: var(--input-background);
+  color: var(--input-text);
 }
 
-input[type='range'] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: transparent;
+  cursor: pointer;
 }
-input[type='range']::-webkit-slider-runnable-track {
-    background: var(--input-range-runnable-track);
-    height: 0.5rem;
+input[type=range]::-webkit-slider-runnable-track {
+  background: var(--input-range-runnable-track);
+  height: 0.5rem;
 }
-input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    margin-top: -4px;
-    background-color: var(--input-range-thumb);
-    height: 1rem;
-    width: 0.5rem;
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px;
+  background-color: var(--input-range-thumb);
+  height: 1rem;
+  width: 0.5rem;
 }
-input[type='range']:hover {
-    outline: none;
+input[type=range]:hover {
+  outline: none;
 }
-input[type='range']:hover::-webkit-slider-thumb {
-    border: 1px solid var(--input-range-runnable-track);
-    outline: 3px solid var(--input-range-runnable-track);
-    outline-offset: 0.125rem;
+input[type=range]:hover::-webkit-slider-thumb {
+  border: 1px solid var(--input-range-runnable-track);
+  outline: 3px solid var(--input-range-runnable-track);
+  outline-offset: 0.125rem;
 }
 
 #color-mode {
-    background: linear-gradient(90deg, var(--color-mode-button-left) 0%, var(--color-mode-button-right) 100%);
+  background: linear-gradient(90deg, var(--color-mode-button-left) 0%, var(--color-mode-button-right) 100%);
 }
 
 #erase {
-    background-color: var(--erase-button-backgroud);
+  background-color: var(--erase-button-backgroud);
 }
 #erase:active {
-    background-color: var(--erase-button-active-backgroud);
+  background-color: var(--erase-button-active-backgroud);
 }
 
 #htmlCheckbox:checked + span {
-    color: var(--cancelled-text);
-    text-decoration: line-through;
+  color: var(--cancelled-text);
+  text-decoration: line-through;
 }
 
 #submit {
-    background-color: var(--submit-button-backgroud);
+  background-color: var(--submit-button-backgroud);
 }
 #submit:active {
-    background-color: var(--submit-button-active-backgroud);
-} /*# sourceMappingURL=basic-style.css.map */
+  background-color: var(--submit-button-active-backgroud);
+}/*# sourceMappingURL=basic-style.css.map */

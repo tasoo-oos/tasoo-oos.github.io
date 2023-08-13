@@ -1,0 +1,93 @@
+/*
+여러 줄 주석 : css에 반영
+*/
+
+// 한줄 주석 : 반영 X
+
+.container-one {
+    background-color: yellow;
+
+    font: {
+        family: 'Helvetica Neue', Helvetica, sans-serif;
+        size: 1.2rem;
+        style: italic;
+        weight: 900;
+    }
+
+    h1 {
+        color: green;
+    }
+
+    p {
+        color: tomato;
+
+        span {
+            background-color: blue;
+        }
+    }
+}
+
+.container-two {
+    width: 500px;
+    background-color: yellow;
+
+    $text-back-color: cyan;
+    $text-color: yellowgreen;
+
+    p:nth-child(1) {
+        background-color: $text-back-color;
+        color: $text-color;
+        font-size: 20px;
+    }
+    p:nth-child(2) {
+        background-color: $text-back-color;
+        color: $text-color;
+        font-size: 40px;
+    }
+    p:nth-child(3) {
+        background-color: $text-back-color;
+        color: $text-color;
+        font-size: 60px;
+    }
+}
+
+.container-three {
+    width: 500px;
+    background-color: green;
+
+    $base-font-size: 20px;
+
+    @mixin p-style($font-size: 20px) {
+        background-color: cyan;
+        color: yellowgreen;
+        font-size: $font-size;
+        margin: {
+            top: 10px;
+            bottom: 10px;
+        }
+    }
+
+    p:nth-child(1) {
+        @include p-style();
+    }
+    p:nth-child(2) {
+        @include p-style($base-font-size * 3);
+    }
+    p:nth-child(3) {
+        @include p-style($base-font-size * 5);
+    }
+}
+
+#scam {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: auto;
+    height: auto;
+
+    &.expanded {
+        width: 100vw;
+        height: 100vh;
+        background-color: red;
+    }
+}
