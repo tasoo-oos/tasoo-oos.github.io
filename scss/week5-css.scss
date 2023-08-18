@@ -1,0 +1,12 @@
+$colors: (
+    greenyellow: greenyellow,
+    magenta: magenta,
+    cyan: cyan,
+);
+
+@each $className, $color in $colors {
+    .#{$className} {
+        background-color: $color;
+        transition: background-color 0.2s ease;
+    }
+}

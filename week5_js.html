@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="dark">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>js copy</title>
+        <link rel="stylesheet" href="./scss/bootstrap-support.css" />
+        <link rel="stylesheet" href="./scss/week5-css.css" />
+        <script src="./light_dark_toggle.js"></script>
+    </head>
+    <body>
+        <button id="color-mode">dark/light</button>
+
+        <h1 class="hello">Press <span>me</span>!</h1>
+        <h1 class="hello">Press <span>me</span>!</h1>
+        <h1 class="hello">Press <span>me</span>!</h1>
+        <h1 class="hello">Press <span>me</span>!</h1>
+        <h1 class="hello">Press <span>me</span>!</h1>
+
+        <div class="container">
+            <h1>Press them!</h1>
+            <h1>Press <span>me</span>!</h1>
+            <h1>Press them!</h1>
+        </div>
+
+        <button data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed btn btn-primary">Collapsible Group Item #1</button>
+
+        <div id="collapseOne" class="collapse" data-bs-parent="#accordion" role="tabpanel" aria-labelledby="headingOne">
+            <a target="_blank" rel="noopener noreferrer" href="http://127.0.0.1:5500/week5_js.js">js code(raw)</a>
+            <br />
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://prettier.io/playground/#N4Igxg9gdgLgprEAuEAzArlMMCW0AEYAFgIZQDmcAKieQHIkC2cAFHADZzOwA0+UcAO416TOHzgA3BDAAyOAM7wBAJwX4AvPgDaAXQCU+YAB0o+c-gD0l-AGEVcEvHwl+Q-By4z8gnDCL4-nD4CgAOcGA4qDhwACaBtPxiphb4nDBuggCinNwZWrEQYOh5AHRgDk5wOV6wLALCtAzM+gDcpikW1nYQoQCeLjAwKjgARujw6qgqEIyBRMEQ7PGeeYEQ88EN+NBwneaoECr4LOn4OJr4AAyt5-gAPB65MqVOw2MTcAqlnBT+tzgANSAwwmMypCxnN7HLSrF7Qj6TbQ4XTtcEQzI1MoKOAwACCQxG43gLGhpSgYj4ZMkJHY6DgbX2+AAvh10VYbLZegNiDhlg4zNNZpsdssnrUMjANkFMjsBEzBEQ+cE2M9YKVomoYLYlctQUzUg0sfDQuEoLEdXzYqqJRqcFrLXq0alWVAmd0AEpwULsEhgYIypYrNUZXz+EXbXbnMwygAiAHkALJMuHq0IkAUwOgQWJwUoOH1+uCO61GkMSEOMt3sz1wAC0bz9ASk3nYimUcDUTMOxxYkCgSiMgT64T4baUCE7fF6uGg6mZO1QHmksHkE9UCn17MNQmN6pIsViWRXcnbk5ULBgI-EaTPqmnoVnA6rLrZqQcMHQKjMZYlaNdpj9oOMBNGI6haNoADkRAAIyQXw0EAEzwfg0EAMwodBAAsmFEAArLhABskGomy3SxnA0QCMurZ3p2CiAXOGQtqudFqJc2hMmCGLmFe4RIKhYBtmAADW8EGpCbECWwhgaAAfEYEkYt0ti0sUvrODKAgAB6SokFLMEpEJARkUAQI0ojMJcl6gcw3w4OacDafGqBsOUX6ZjQKiUDAPxFLSzQMvggL4DBhgAKQJJZXw-Ag5D-G+PGpMQZCUCIgVucUKieRmPl8CB0UKNoZkWYFugSCea4dmoL48cyPBGTOeADgJqC0jiDXsvV7o2Hih47EExwsRk47VeoJDqAIcRxKYpHVhgWBPiEYbEFy7BHAoMmKeyJmEEsG0cZB5AOAgfQcOtgiYWAfRkJhjC0DIJAkc6Fi7SVlx5llOXebiL0HEcJxnBcWg3HcjyQOtaixX8AR1qFALAluSVRCcJXlL6CgKFV5TQCBDmbRDG3IgYSNJRYaNCRNWPtvmXAQNIfb7WoxO1WT-DmejVPYwe1qE8zFwhTBBh-WTH5flAIuvl1iXmBTGPU0otOMPTrB80VavQ-FsOhcLTJy1zNM84zkNFVcutQABUALdgzXLX4q1MwoACqCgOeQADKV6cFt3GvUx7OCB97nZTIXk+SLKP1BzSh9JwpSjH6InHRAmAWkzmhaJBkGkxiaMx3HCeicnqdrQDmfHXACCQSLC4cDi5xLlHgilPneaF0nMwl+nGjlydUDZ9tSV517beJ8X5qlzCqGjHScDV0ytfsPXkfD7Ho9F53E-d5nM-0gPvu59HI-x2Pm9p5DlyQQ4sTz11Tz1wfEKrwXp8p1vF+Z7fUuWyppAUAGCwoouHNPgBwDYhhNhorAW8656KMQHBkY6JBRjgXwIUYoZQfJ7hgAoAAQn0Ww8sMrQXOhAbOaIeyA1xHcEGAIHj4CQSgzW-xziI0HhYRhRUUSvEPMeGQVVzxsEqmxU2uhSh8RvMNARG5tBmx+GxCq-CRGyLEU1OcrMGEqGQVwsRvJ+QIBUTwo8wjYEXkgsrdAOIVYqBQhcSKiEM7XHwAAfjtjAB2Jt8ACQUCtIgk9nauwoJ7NeVZLa7SCIwBxBQiglBeAAR3pCoPo7tPDYCOCwSCONYAkAcp2fAsEkCwCIHWPR1pEL6HIaYCJiEjF8NYqYoRSjTGiPEdeRR9SxqGNGuedpp5mmGLUc+NE8DgILEYDBS46DYnqgSZ2ZJqSpRmKyXjVQ+SYJIE1EoEpuob5VnCWMtCkyYllFmUklJnA0lLP7CsvJBSMYwG2VaSp1YIkwVqSY6qGShI4FEihHx9s-GOyrBEtC7ymmfMgt835fB-nuMBSbKsphfDmg5jzOpfSIUOFdgALznnwFgskFKP12qMHMAxokYJeKS2IfQRa7T5pcalfQW7H3buPc+RxhnskjgAQj5jnCETKWVrxPhvN+HKp5X3IKMFgVw+CITwnhPgVwKmSwsGLb8txuhOT8CKa2S1An+h8MEAAVpYjIOJJSAL5gvGWe0EGgOlQANVpPSVBfNSj3ThSwSw3lRjGGMCwFgAbYggnxSGsNJwI36ADfoSwiLuWNz9S62em52EYl2toAA+nwa+fAK4ID4LvOAuhLjJtdV8LlSU3pCAAOJ92sumNQcAACSdQC1QEMHDAAHMFfACrCIRX7XhQiWqbAIAUF+YIurChfH7ogjYowODmWuHa1IQrW6io7uKyelwAAGfqWAABJgDX3qvgE9DR62VwtnwE9xbmT6D3TXUwj60QgB4CAQZChkCgAzDMQQAAFDME7kAgFpIIEgfQf2ftGFo0SuJ3ZiHkAIZAbUl7iBAHBxOiH0yRAoMgYY9JP04kYDgQjKhiMgECeQTgABFdAEB4Bofaphk1ChtLuzdvRxjzGNmsc-QkpjcBAMzFCD+lAE06xTVzLED9IBhg5LbBQLkjB7pgdpOweTNHOAEneMSETnYUNwBYxhz9RAYCMHYAAdSVJMPDcAUkDj8DgSQfg+hgbAJjeTkh6RttzLAd2FQcCPjxOaYJnBTMdRAKEGYOJrNaNCGB2LXxOzSHk-jTsMBRO0HU-xszMWMw4hUGBiRChguPnk7FhyMBrM4FiP4ZA3a5UgAcAk+0ImtHkDy+h6LIFRh1Ya0QZAiFP2WOoNoqLmGuBLsPHEWQqV0APQAGJHC9bgAjkmJgQBAMyZkQA"
+                >js code(Colorized)</a
+            >
+        </div>
+
+        <script src="./bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="./week5_js.js"></script>
+    </body>
+</html>

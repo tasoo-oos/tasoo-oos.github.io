@@ -1,0 +1,14 @@
+.greenyellow {
+  background-color: greenyellow;
+  transition: background-color 0.2s ease;
+}
+
+.magenta {
+  background-color: magenta;
+  transition: background-color 0.2s ease;
+}
+
+.cyan {
+  background-color: cyan;
+  transition: background-color 0.2s ease;
+}/*# sourceMappingURL=week5-css.css.map */
