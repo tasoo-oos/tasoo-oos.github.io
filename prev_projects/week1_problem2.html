@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="dark">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>프엔 경연대회</title>
+        <link rel="stylesheet" href="../scss/basic-style.css" />
+        <link rel="stylesheet" href="../scss/bootstrap-support.css" />
+        <script src="../light_dark_toggle.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>프로그래밍 경연 대회</h1>
+            <p>여러 언어를 통해 코딩 문제를 풀어보자!</p>
+            <button id="color-mode">dark/light</button>
+        </header>
+
+        <hr />
+
+        <section>
+            <form>
+                <h3>개인정보</h3>
+                <ul>
+                    <li>이름<input type="text" name="name" /></li>
+                    <li>연락처<input type="tel" name="phone" /></li>
+                </ul>
+
+                <h3>지원분야</h3>
+                <input type="checkbox" name="language" /><span>c/c++</span> <input type="checkbox" name="language" /><span>python</span> <input type="checkbox" name="language" /><span>javascript</span> <input type="checkbox" name="language" id="htmlCheckbox" /><span>html</span>
+
+                <p id="warningText"></p>
+
+                <h3>할 말</h3>
+                <textarea name="message" rows="8" cols="30"></textarea><br />
+
+                <input type="button" value="제출" id="submit" onclick="alert('뻥이지롱~');" />
+
+                <input type="button" value="내용 지우기" id="erase" />
+
+                <h3>포트폴리오</h3>
+                <input type="file" name="portfolio" />
+
+                <h3>자신의 실력</h3>
+                <input type="range" name="points" id="programming-skill" min="0" max="3" step="1" value="0" />
+                <p id="skillLevelText">실력: 초보</p>
+
+                <h3>희망 대회 일시</h3>
+                <input type="date" name="contestdate" />
+            </form>
+        </section>
+
+        <br />
+        <hr />
+    </body>
+
+    <script>
+        const textarea = document.querySelector('textarea');
+        const erase_btn = document.querySelector('#erase');
+        const skillLevelText = document.querySelector('#skillLevelText');
+        const htmlCheckbox = document.querySelector('#htmlCheckbox');
+        const warningText = document.querySelector('#warningText');
+        const rangeInput = document.querySelector('input[name="points"]');
+
+        erase_btn.addEventListener('click', () => {
+            textarea.value = '';
+        });
+
+        htmlCheckbox.addEventListener('change', () => {
+            warningText.textContent = htmlCheckbox.checked ? 'HTML은 프로그래밍 언어가 아닙니다.' : '';
+        });
+
+        rangeInput.addEventListener('change', () => {
+            const skillLevel = parseInt(rangeInput.value);
+
+            let skillText;
+
+            switch (skillLevel) {
+                case 0:
+                    skillText = '실력: 초보';
+                    break;
+                case 1:
+                    skillText = '실력: 중수';
+                    break;
+                case 2:
+                    skillText = '실력: 고수';
+                    break;
+                case 3:
+                    skillText = '실력: 전문';
+                    break;
+                default:
+                    skillText = '실력: ???';
+            }
+
+            skillLevelText.textContent = skillText;
+        });
+    </script>
+</html>
