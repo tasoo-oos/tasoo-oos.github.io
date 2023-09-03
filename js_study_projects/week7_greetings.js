@@ -2,7 +2,7 @@
 const loginForm = document.querySelector('#login-form');
 const loginInput = document.querySelector('#login-form input');
 const loggedIn = document.querySelector('#logged-in');
-const showName = document.querySelector('#logged-in h1');
+const showName = document.querySelector('#logged-in span');
 const logoutBtn = document.querySelector('#logged-in button');
 
 const CLASS_HIDDEN = 'visually-hidden';

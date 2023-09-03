@@ -49,13 +49,13 @@ const quotes = [
     },
 ];
 
-const quote = document.querySelector('#quote span:first-child');
-const author = document.querySelector('#quote span:last-child');
+const quote = document.querySelector('#quote p:first-child');
+const author = document.querySelector('#quote p:last-child');
 
 function selectQuote() {
     const num = Math.floor(Math.random() * quotes.length);
     quote.innerText = quotes[num].quote;
-    author.innerText = quotes[num].author;
+    author.innerText = `- ${quotes[num].author}`;
 }
 
 selectQuote();

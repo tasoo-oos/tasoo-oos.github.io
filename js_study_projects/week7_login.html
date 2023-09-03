@@ -6,55 +6,71 @@
         <title>Momentum</title>
         <link rel="stylesheet" href="../scss/bootstrap-support.css" />
         <script src="../light_dark_toggle.js"></script>
+        <style>
+            .box {
+                background-color: rgba(
+                    0,
+                    0,
+                    0,
+                    0.7
+                ); /* Semi-transparent black */
+                color: white; /* White text */
+                margin: 10px;
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            .fade-out {
+                opacity: 0;
+                text-decoration: line-through;
+                transition: opacity 0.5s ease-out, text-decoration 0.5s ease-out;
+            }
+
+            #weather img {
+                width: 30px;
+                height: 30px;
+            }
+        </style>
     </head>
     <body>
         <button id="color-mode">dark/light</button>
-        <h2 id="clock">99:99:99</h2>
-        <form id="login-form">
-            <input type="text" placeholder="What is your name?" required maxlength="15" />
+        <div id="time" class="box" style="display: flex">
+            <h2 id="date" style="margin-right: 10px">9999/99/99</h2>
+            <h4 id="clock" style="margin: 6px">99:99:99</h4>
+        </div>
+        <div id="weather" class="box">
+            <h3></h3>
+            <img />
+            <span></span>
+        </div>
+        <form id="login-form" class="box">
+            <input
+                type="text"
+                placeholder="What is your name?"
+                required
+                maxlength="15"
+            />
             <button type="submit">login</button>
         </form>
-        <div id="logged-in" class="visually-hidden">
-            <h1>asdad</h1>
+        <div id="logged-in" class="visually-hidden box">
+            <span class="h3">asdad</span>
             <button>logout</button>
         </div>
-        <div id="quote">
-            <span></span>
-            <span></span>
+        <div id="quote" class="box">
+            <p></p>
+            <p></p>
         </div>
-
-        <p class="d-inline-flex gap-1 bottom-100">
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">code</a>
-        </p>
-        <div class="collapse" id="collapseExample">
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://prettier.io/playground/#N4Igxg9gdgLgprEAuEB6VACAIgeQLIZwA2cAtgjAM4YCGUAJhpFJTHVQDpTOsZEQBzAJZQAYhABOpDAF4M9CGACu5WADoAjkrgSAngGVicMDEkAKAOQBifsKgBaAGaTSFgJQBuLjxh9BIgEkoAAclXzkFZVUYTW09QxITc2tbEScXDBFQmHcvbmheWwE4eiDZeUUVClidAyMkiUsbQWL6exFc7wLfSgALCAB3ADkacnLIqvUtWoTjU0aUlpL2qAxegEZO-JZfWwgwgCEYVYjK6Jr4+vmmouWRDAAjMNMoLa6djABhABkAQX19AB9AASASwWAAokNyhYAG5CShKGhEIi6ey9IT0egICx5HwYADiACUIRCACoBIYEwFDX54CGAgDSEIAmjCBBI4HAYCIBLiuFx0Bhvv5Vo4lNwedBkUIYLouOLJUJoBhKNyRuQgiKwMj9PMaMUzFBRnA3BhgFwMFa-DqiHrJAa4Go1TAAvBSGZiaSKVSaXSGcyWQAaDDG8ieLgAXwFUEVJmVq05pAgsLgGrgogkEFI2t1+sNZotq2t-Ft9okjrUSZTcDdZE9JPJlOptPpTNZEag0agCol8ZVxRg6cz2dzdvzcDMhct1s5MCUElWpbzDuKakHdY9XqbvtbAY7eW7vaVKqUwXoNHgAFUAuIJCKBK0gnrL5Ow6bzTOrfjSJQBOUAANgWIfgQwAEmAd9IwAQgAvJrVVfphhNNQRCgHQyTgAAPcIMF-AR4JLUU71INQwCIGhKEob4ERiGgsTMH5-iBUFwShTsENuUooDIiiqJo1gqzIGtGL+AEQTBSEhk7I9Yz7KVVjPC9r1vSQH1aHAwhfeAp0-YsrVSMQXF4yjqNooTk1TUTmIktjpMIgylm4kz+PM+j6Gs8TWKkmSYzjBS-DsMw4FTWBp30whQpiYJOSirA4EcGglCIGApzyL8mG6UMTXKQygmyNRYWRbQMAAH1KjBB2HLMc0UFcKwLdKIqERwMCNHLoJkOQoGSogMAAMn67Kxk6uQLHcPSEIQl10y1Orx1XN8TQ4qarSU18bzvdSSmfNgdPfFarW7WT-ITQL9lS8KEOrVNqtHeby0dNKMvWlStqczSYG0ydfJ7OST1WF0CU5bleW+3SiwQ-F33KKqTRHWqywnZ7mta9qRq60NeoGoaYdGjBxqu1aMFeuBNrUpzdtfdHTQcjBI0IIg1Um4nSfJ+8Pq0vafrp46YyFCEor4WiEB0SguD2Q5jjUdzBYoAT4HQhZyKEMAAGsLBDSWYE7QySJlrE5dgBXRYWREHlIWVNcCkRO0FTAgllIQZQALzgDAYF6d2b0eSiSgwFVDNVbmuCBkGeSgARwc7EAgxACBggUyhkFAGgJCzAYAAU04QZOUGRAYaF0ZO44eCt1e5fQTRo9DkESpm4FL8u1cr4IaDAXlkBgCRtDjtVLa7nvG5ASheRIABFJQIHgOvkTVOOACtKCw-Qx7gSfp7gWeG7jrRN8zrNgjzkBKPsdCShKWOQG7mghCIXlPmzUgaGQE+USv0fI5IX4YG7oQnngJnHQNct5IHrvPEAvQYCkCIAAdQxPASgbcwBwEMCwJ28I5SvzAFRK+sJtBBGxLAfQYAJBCETr8BgepdAkG3hAmKEA1SwIrMEV+MU4BqgkKmK+IhOEwAPgaZ+dDh5twkJw1+cpggcNIeQmAV8YoiBgLAzEntkAAA4AAMcdORaCEJyARAghFgLnsPNgDxlH0FUUgAATHHJQaoyQ0AeHncBw8yAPBKNieg3w6ACCRMUEil4I4CFfklUwIBIyRiAA"
-            >
-                greetings.js
-            </a>
-            <br />
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://prettier.io/playground/#N4Igxg9gdgLgprEAuc0DOMAEYA2EwDWmAvJgCb4CuAtgjAHQCOlcATgJ4DKcOcYMEVgAoA5AGJc+AiICUAbgA6UJZCgZMAS1hsAbgEMcJTAGYADIuVQAZpSj8N0chrQAHHHvYBhPISEzMwEqYwdjoWGR68EZQcADumAAikXB+FiGhalgAFhCUrEacMKxaAOZCEfD0JXAwABK5rGh+MvQuemSFeqwwQgBMADSYIqayaSGq6tRalFGkhcVQZRVwVTUAstPwTTItbR0wXT0DQyPyQeNhmGh80GQFRaXlyasw3Kpk27vtnd19g8Ojc7BCZYKY4HDOG5QO5zB6LJ6VaowDbgyHvT6tb4HX7Gf6nMbAnwEehaGKsAAqcAAHlhSAADAAkwByeQAvkgmVMoDM4Oymdd3qz6JyNKiBbdWXSLKylEobHYYA4oJgXKw+JCAJLaVj6HB+AJApyudxeImpWXKi6ZTBQCDxUhJSq22Lmy3Ay5oLIaKy0zTa3WYAC0mCEzswAFI-fAdQYzm6rjVyRpaLkeqr1dctdHdYM1pEsvRqHoqUJTINPd6YDsCZgAPS1jJoCC8eh4MrO8ten1xmWWeuYH5YGBZODYIlKdNgTX+gyukD9EAQFyK9DIUBdVh2gAKXQQaGQIAMsQ8+4XACNWHpCDVOHpaAAZLRwZBWAzXc+X6+vNpTxbIIosAu1xTP+rCASAaClLwACKlAQPAL5vnAC4AFZoFSnBQXAsHwc+SCvjg74gMwuFbpuLj7igehoIGMRwGQ9HziARR6KKpSeBA1BFgeBg4ExkGLLwACCMAPGePJbmwj4xIhhHISAWQwNQOAAOpelsP5wNwagaIqOi6ewB5gGgp4gDoLBagxsCcGAxTLkJ0KFOwvCyURqoQNcKmXi4B7ptcOrPguWj+TAZF6CU3H4UhC5tI0bAHjA7AuHAaC2Roy5MaqWgwCpGhkMOyAABxliAarMBoaphRFeiufJBxnrl+VZMgAwgJQ1zknoZ6UQRRFwNQZ70QxZD3noiyUOFcAAGKCEWomlDxMwQCArKskAA"
-            >
-                clock.js
-            </a>
-            <br />
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://prettier.io/playground/#N4Igxg9gdgLgprEAuc0DOMAEBHArheNTAXkwG0AdKTGzYK2xnfeJTAcgEEAbbzCXACdMAE0FwAhgFsiYCdUhS4mGINxwANJgCWAM0wB3ZQAsJAN2UxjyyEIkBzSxEwAHIWnUrrUgHTsNDEw0ErhWEIJs7ADqEtxYACLaaFBwAJ7+gTQAvgHUtPR5QXgEcJEAKtaYAEZwGCraSirOLtzyWBIq4soGEkQATAAMmKmSgkQOED6YFcpocJBQItW1WDANykmYUBAGfrlBwaHG4ZEAwsbaKXOYAAqCEBaCVRmFmDmZdB+MxawcAJKGCQAa2UuBcmDgj1SmCk4Sgl3smHkSyslyBTRhqTm3F0WkAGAQACR2mF0EmEcmoALcaGMXk2ihc8mhly8yhSAA8sH0ACyYY7uPZfWghMIRDgAGUktIAQrg0Hg4C9GO9XgUDswSpEAGISbSCaEwWK1JHiGHhSymaiqdRsbZYGpyOUWtIqOC8TByrwSLBiCZQIhwdlJGBaKqhZaO65WF3wd2eqze0SCP2yeTLZbehCC16MEXHMXsABycG0fAA4rqpPIlbQVYw1QcfqUOABRKGoqCI1ICTAUnRV+yXDZEcSxbPqvMnDg3CRVbjOG7aORoNAQGvZfb5IU0JuReLOaAWhEQqGiCQG0xYNBycREbu4ccHScFlvcSTbYQAJQgEDmFji65vJuNANkULDNuwADKVaCFgLhwBALTKG+ZLULo9xSCecD6h2iLIlh+qHlo5jYQ4yjwYhb4khhrJ6hC7LwYI2gIGAtRaBgYLaEsFFIUi3CjiI0KmBYfF8NGSL+kYYyPkEz6RJBEBgMmhCAXWW45rQu4cPuhiXsMPa6HAbo6NQ97CNYZKrM4NSYEx9jGDAgCoBLo4RTPegCYBO6NlKdoaxgNoABecBLEyPSpDJTBya2KEfpg36-pCbowKpwGfBpO7gXu0DufaygSOhuoos4g4iWCrKYPYP5FRVzgucI4n2KOMARbmRxTuwABSEDGNQ8RTN+YAgoZvDYSlHygUwWnsDMfJkksIjnuMpoGHpVYgvpuCYBg9ydthLXCm1BY8NCn66mgVZQGNqrbhqvzsH8+iIS44QwLg8IwNCIgQLUUA5ZgQLbINoa4KWIWiD+gj7YcoqRAA0kIWCnBAVS6pdqVqSBN1TX8VqVFIXEiFRED6Il+qiHouhLrgcTQtwzFEE9L1vb54WAa1MMcDwNSwZgLaXBgJZox8KoALoANxUFQCx1E2JDg2AuBKLAPgKvqkFuvMMDhAAFOwADEstoIyUBIJTYwwAAtGAFzcCI7AAJQS1A0vtIdctfQrSvNarqTq2+YBa4IusG+BW3G0grQYFbNt247ktQLob0B9o0BbRrAcAIrgdr9tpYwLtbIrcsALLesYPi6POOul1YPjJosEBSDnmAAFS3bUPhvp2Vhx68TY+JcKSCGUgZYKQTZoGQUCKyLKvgU77P5gPUBDyPnJyxPU8zz4z5O1k8fYprWclDnTtzDAOPwIIZixNrh+Z+BWgAMwDK-vcgBoICIWs6DIKAZL3AMDOcQ-pkAgFiGFNAH8QBVGTINOAMBILSDgOKIcyBSTcDmJ-WBEh4GIMZP5TsyBrSaBAHMfGxC1CkLQAiN8x94DoNiFgkAAArNA7JIK0LgPQuAjDMGkKbHcRCUCUC9AtikYKwVoGqF1HTTsSMpBVjAbEbg0CaGdjfJwGAqhtBhngDcbCqCUh8OYQ5KQ3AogXEIAQuA6t-S+W0GYFmYCwArmgWYdQOMRAIEQT5FwMBOCLEgh9N8JjSEuHuHMKIyYXBgIibUbCFhoH82wjAO4DglGmyYeEskcxBBgI+vBa8TF-HQIiZcGAUQuJWGQAADgGJ-cQeA9RwHSfYTJGDmGGiqFUkQNSkB9E-k6Mos4RGdNIXAKQNQRDeJEOKeQ9hcBkS1OEKs2iETKNCBAEAWQshAA"
-            >
-                quotes.js
-            </a>
-        </div>
+        <form id="todo-form" class="box">
+            <input type="text" placeholder="Write and press enter" required />
+        </form>
+        <ul id="todo-list" class="box"></ul>
 
         <script src="week7_greetings.js"></script>
         <script src="week7_clock.js"></script>
         <script src="week7_quotes.js"></script>
+        <script src="week7_background.js"></script>
+        <script src="week7_todo.js"></script>
+        <script src="week7_weather.js"></script>
         <script src="../bootstrap/dist/js/bootstrap.bundle.js"></script>
     </body>
 </html>
