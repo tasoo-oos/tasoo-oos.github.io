@@ -1,0 +1,126 @@
+#main {
+    perspective: 1px;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: x hidden;
+    overflow-y: hidden;
+}
+
+.navlinks {
+    margin-top: 5px;
+    position: fixed;
+    left: -35px;
+    z-index: 10;
+
+    a {
+        color: inherit !important;
+        text-decoration: none !important;
+
+        &:active,
+        &:focus,
+        &:visited {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        &:hover {
+            color: inherit !important;
+            text-decoration: underline !important;
+        }
+    }
+}
+
+#mynav {
+    list-style: none;
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+
+    li {
+        margin-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px 10px;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    }
+}
+
+$translate-values: (
+    0: 0%,
+    1: -100%,
+    2: -200%,
+    3: -300%,
+    4: -400%,
+);
+
+@each $index, $value in $translate-values {
+    #nav#{$index}:checked ~ #main div.parallax-layer {
+        transform: translateY($value);
+    }
+}
+
+.parallax-layer {
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateZ(0);
+    transition: transform 0.5s ease-in-out;
+    backface-visibility: hidden;
+
+    p {
+        font-family: sans-serif;
+        font-size: 5em;
+        position: absolute;
+        text-align: center;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+        top: 40%;
+        margin: 0;
+    }
+}
+
+$slide-colors: (
+    01: (
+        #38383a,
+        #e9e9eb,
+    ),
+    02: (
+        #eddd26,
+        #38383a,
+    ),
+    03: (
+        #38383a,
+        #e9e9eb,
+    ),
+    04: (
+        #eddd26,
+        #38383a,
+    ),
+    05: (
+        #38383a,
+        #e9e9eb,
+    ),
+);
+
+@each $index, $colors in $slide-colors {
+    #slide#{$index} {
+        background-color: nth($colors, 1);
+        color: nth($colors, 2);
+    }
+}
+
+input[type='radio'] {
+    display: none;
+}

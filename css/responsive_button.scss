@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,700,300);
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Nunito', sans-serif;
+    .page {
+        margin: 0 auto;
+        width: 920px;
+    }
+    .content {
+        width: 33.33%;
+        display: inline-block;
+        margin: 0 auto;
+        position: relative;
+        height: 100vh;
+        max-width: 300px;
+    }
+    %layer {
+        width: 600px;
+        height: 200px;
+        transition: all 0.4s;
+        position: absolute;
+        top: 0;
+        left: -200px;
+        img {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    .circle {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 50%;
+        width: 200px;
+        transform: translateY(-50%);
+        transition: all 0.5s;
+        cursor: pointer;
+        &:hover .circle_shine {
+            top: 330px;
+            left: -200px;
+        }
+        &_shine {
+            background: white;
+            width: 600px;
+            transition: 0.3s;
+            height: 200px;
+            opacity: 0.2;
+            top: -10px;
+            left: -90px;
+            transform: rotate(45deg);
+            position: absolute;
+            z-index: 2;
+        }
+        &:hover h2,
+        &:hover h3 {
+            opacity: 1;
+            top: -36px;
+        }
+        &:hover .content_shadow {
+            transform: scale(1.1);
+            top: -22px;
+        }
+        &:hover h3 {
+            transition: all 0.2s 0.04s;
+        }
+        &:hover h2 {
+            transition: all 0.2s;
+        }
+        .circle_inner__layer._bg {
+            top: 0px;
+            left: 0px;
+        }
+        .circle_inner__layer._char {
+            top: 0px;
+            left: 0px;
+        }
+        &_title {
+            text-align: center;
+            h2,
+            h3 {
+                opacity: 0;
+                color: #b0d5d6;
+                margin: 0;
+                transition: all 0.2s 0.04s;
+                position: relative;
+                top: -10px;
+            }
+            h3 {
+                transition: all 0.2s;
+                color: #4a7479;
+                font-size: 15px;
+            }
+        }
+        &_inner {
+            border-radius: 200px;
+            background: #b0d5d6;
+            overflow: hidden;
+            margin: auto;
+            width: 200px;
+            z-index: 1;
+            transition: all 0.3s;
+            height: 200px;
+            position: relative;
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            &:hover .circle_inner__layer._bg {
+                left: -80px;
+                transition: all 4s linear;
+            }
+            &:hover .circle_inner__layer._char {
+                left: 0px;
+                transition: all 4s linear;
+            }
+            &__layer {
+                @extend %layer;
+            }
+        }
+    }
+    .content_shadow {
+        width: 200px;
+        box-shadow: 0px 31px 19px -2px #e0e8f9;
+        height: 20px;
+        border-radius: 70%;
+        position: relative;
+        top: -44px;
+        transition: all 0.3s;
+        z-index: 0;
+    }
+}

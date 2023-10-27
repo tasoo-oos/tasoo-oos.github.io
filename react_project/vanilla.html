@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="dark">
+    <head>
+        <meta name="author" content="Tasoo Park" />
+        <meta charset="utf-8" />
+        <title>front end portfolio</title>
+        <link rel="stylesheet" href="../scss/bootstrap-support.css" />
+    </head>
+    <body>
+        <span>0</span>
+        <button>press me!</button>
+    </body>
+    <script>
+        const btn = document.querySelector('button');
+        const counter = document.querySelector('span');
+        let cnt = 0;
+
+        btn.addEventListener('click', function () {
+            console.log('clicked!');
+            cnt += 1;
+            counter.innerText = cnt;
+        });
+    </script>
+</html>
